@@ -105,6 +105,9 @@ public class PlayerController : MonoBehaviour
                 hit.transform.GetComponent<ZombieController>().TakeDamage(1);
             }
         }
+=======
+        
+>>>>>>> Stashed changes
     }
 
 
