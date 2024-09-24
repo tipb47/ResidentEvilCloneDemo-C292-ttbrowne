@@ -44,7 +44,7 @@ public class Pistol : Weapon
 
                     if (hit.transform.CompareTag("Zombie"))
                     {
-                        hit.transform.GetComponent<Enemy>().TakeDamage(1);
+                        hit.transform.GetComponent<ZombieController>().TakeDamage(1);
                     }
                 }
             }

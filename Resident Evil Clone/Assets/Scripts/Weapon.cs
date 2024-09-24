@@ -69,7 +69,7 @@ public abstract class Weapon : MonoBehaviour
                 if (hit.transform.CompareTag("Zombie"))
                 {
                     // Grab the Enemy script on the Enemy we hit, and call its TakeDamage() method, passing in the damage to deal (1 in this case).
-                    hit.transform.GetComponent<Enemy>().TakeDamage(1);
+                    hit.transform.GetComponent<ZombieController>().TakeDamage(1);
                 }
             }
         }

@@ -95,7 +95,6 @@ public class PlayerController : MonoBehaviour
 
     private void Shoot()
     {
-<<<<<<< Updated upstream
         RaycastHit hit;
         if (Physics.Raycast(firePoint.position, firePoint.forward, out hit, 100))
         {
@@ -105,9 +104,6 @@ public class PlayerController : MonoBehaviour
                 hit.transform.GetComponent<ZombieController>().TakeDamage(1);
             }
         }
-=======
-        
->>>>>>> Stashed changes
     }
 
 
