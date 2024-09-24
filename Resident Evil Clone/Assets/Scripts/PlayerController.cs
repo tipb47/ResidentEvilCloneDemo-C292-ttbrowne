@@ -95,6 +95,7 @@ public class PlayerController : MonoBehaviour
 
     private void Shoot()
     {
+<<<<<<< Updated upstream
         RaycastHit hit;
         if (Physics.Raycast(firePoint.position, firePoint.forward, out hit, 100))
         {
