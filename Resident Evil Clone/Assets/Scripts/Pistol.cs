@@ -20,7 +20,7 @@ public class Pistol : Weapon
         
     }
 
-    protected override void Fire()
+    public override void Fire()
     {
         if (canFire)
         {
@@ -58,13 +58,6 @@ public class Pistol : Weapon
             yield return new WaitForSeconds(burstDelay);
             canFire = true;
         }
-    }
-
-    protected override void Reload()
-    {
-        base.Reload();
-
-        StartCoroutine(ReloadCooldown()); // cant fire for a few
     }
 
     private IEnumerator ReloadCooldown()

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
@@ -16,6 +17,10 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private Transform firePoint;
 
+    [SerializeField] Weapon currentWeapon;
+    private List<IPickupable> inventory = new List<IPickupable>();
+    [SerializeField] TextMeshProUGUI ammoText;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +28,11 @@ public class PlayerController : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        if (currentWeapon != null )
+        {
+            ammoText.text = "Ammo: " + currentWeapon.CheckAmmo();
+        }
     }
 
     // Update is called once per frame
@@ -37,9 +47,15 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            Shoot();
+            //Shoot();
+            currentWeapon.Fire();
         }
-            
+
+        if (Input.GetKeyDown(KeyCode.R))
+        { 
+            AttemptReload();
+        }
+
     }
 
     void LookAround()
@@ -83,6 +99,11 @@ public class PlayerController : MonoBehaviour
         {
             isGrounded = true;
         }
+        else if (collision.gameObject.GetComponent<IPickupable>() != null)
+        {
+            inventory.Add(collision.gameObject.GetComponent<IPickupable>());
+            collision.gameObject.GetComponent<IPickupable>().Pickup(this);
+        }
     }
 
     private void OnCollisionExit(Collision collision)
@@ -104,6 +125,28 @@ public class PlayerController : MonoBehaviour
                 hit.transform.GetComponent<ZombieController>().TakeDamage(1);
             }
         }
+    }
+
+    private void AttemptReload()
+    {
+        if (currentWeapon != null)
+        {
+            Enums.MagazineType gunMagType = currentWeapon.magazineType;
+            foreach (Magazine item in inventory)
+            {
+                if (item is Magazine)
+                {
+                    if (item.GetMagType() == gunMagType)
+                    {
+                        currentWeapon.Reload(item);
+                        inventory.Remove(item);
+                        ammoText.text = currentWeapon.CheckAmmo();
+                    }
+                }
+            }
+               
+        }
+            
     }
 
 
