@@ -1622,7 +1622,15 @@ MonoBehaviour:
   currentLoadedAmmo: 18
   currentSpareAmmo: 200
   canFire: 1
+<<<<<<< Updated upstream
   firePoint: {fileID: 0}
+=======
+  magazineType: 1
+  firePoint: {fileID: 4599693024823426338}
+  magazine: {fileID: 6901992942798623092, guid: b9ba43bb56841124893dba192138c452,
+    type: 3}
+  ammoText: {fileID: 0}
+>>>>>>> Stashed changes
 --- !u!1 &8588311622914842083
 GameObject:
   m_ObjectHideFlags: 0
